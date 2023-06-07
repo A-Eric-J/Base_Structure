@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:base_structure_project/base/provider_setup.dart';
+import 'package:base_structure_project/services/graph_ql_config.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:base_structure_project/generated/l10n.dart';
 import 'package:base_structure_project/locator.dart';
@@ -10,13 +13,31 @@ import 'package:base_structure_project/ui/views/subsidiary_view/splash_screen/sp
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:base_structure_project/base/router.dart' as router;
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setupLocator();
   await SharedPreference.init();
+  await initHiveForFlutter();
+  ValueNotifier<GraphQLClient> client = GraphQLConfig.graphInit();
+  HttpOverrides.global = MyHttpOverrides();
+
+  /// if you need to use GraphQl you can uncomment these lines bellow
+  // return runApp(GraphQLProvider(
+  //     client: client,
+  //     child: MultiProvider(providers: providers, child: const MyApp())));
   return runApp(MultiProvider(providers: providers, child: const MyApp()));
 }
 
@@ -31,7 +52,7 @@ class MyApp extends StatelessWidget {
     ]);
     preCacheImages(context);
     return MaterialApp(
-      localizationsDelegates:  const [
+      localizationsDelegates: const [
         S.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -61,8 +82,7 @@ class MyApp extends StatelessWidget {
       onGenerateRoute: router.Router.generateRoute,
       debugShowCheckedModeBanner: true,
       navigatorKey: locator<NavigationService>().navigatorKey,
-      home:  const SplashScreen(),
+      home: const SplashScreen(),
     );
   }
-
 }

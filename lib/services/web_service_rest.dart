@@ -5,14 +5,14 @@ import 'package:base_structure_project/models/server_response.dart';
 import 'package:base_structure_project/services/cookie_service.dart';
 import 'package:dio/dio.dart';
 
-/// [WebService] is a service for every REST API request to the server
+/// [WebServiceRest] is a service for every REST API request to the server
 /// and we use Dio for interacting with network.
-class WebService {
+class WebServiceRest {
   CookieService? cookieService;
 
-  WebService({this.cookieService});
+  WebServiceRest({this.cookieService});
 
-  WebService setDependencies(
+  WebServiceRest setDependencies(
     CookieService cookieService,
   ) {
     this.cookieService = cookieService;

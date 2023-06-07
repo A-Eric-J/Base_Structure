@@ -3,13 +3,13 @@ import 'package:base_structure_project/enums/response_status.dart';
 import 'package:base_structure_project/enums/view_state.dart';
 import 'package:base_structure_project/providers/authentication_provider.dart';
 import 'package:base_structure_project/services/shared_preference_service/shared_preference.dart';
-import 'package:base_structure_project/services/web_service.dart';
+import 'package:base_structure_project/services/web_service_rest.dart';
 
 /// [AuthenticationService] is a mock for showing post request to server
 class AuthenticationService {
   /// for example [authSendCode] is for sending phoneNumber for authenticating
   static Future<bool> authSendCode(
-      WebService webService,
+      WebServiceRest webService,
       AuthenticationLoginProvider authenticationProvider,
       String phoneNumber) async {
     authenticationProvider.setLoginState(ViewState.busy);
@@ -28,7 +28,7 @@ class AuthenticationService {
 
   /// for example [authVerifyCode] is for checking that verifyCode is true or not for authenticating
   static Future<bool> authVerifyCode(
-      WebService webService,
+      WebServiceRest webService,
       AuthenticationLoginProvider authenticationProvider,
       String verifyCode) async {
     authenticationProvider.setCodeReceiveScreenState(ViewState.busy);
