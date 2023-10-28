@@ -42,7 +42,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 appBarState: AppBarState.backing,
                 title: searchText,
               ),
-              SearchBar(
+              SearchBarWidget(
                 textController: textController,
                 borderColor: customTextFieldBorder,
                 labelText: searchLabelText,

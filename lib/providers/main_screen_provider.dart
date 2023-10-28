@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 /// [MainScreenProvider] is a provider for changing bottomNavigation screens
 class MainScreenProvider extends ChangeNotifier {
-  int _bottomNavigationCounter = 0;
+  int _bottomNavigationCounter = 1;
 
   void setBottomNavigationCounter(int num) {
     _bottomNavigationCounter = num;

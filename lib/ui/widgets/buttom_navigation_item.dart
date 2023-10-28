@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:base_structure_project/ui/extensions/system_info.dart';
 import 'package:base_structure_project/ui/shared/colors.dart';
 import 'package:base_structure_project/ui/widgets/text/text_view.dart';
 
@@ -21,10 +20,6 @@ class BottomNavigationItem extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        if (isWeb)
-          SizedBox(
-            height: width * 0.0266,
-          ),
         Icon(
           iconData,
           color: activated ? brandMainColor : mainViewUnSelectedItemColor,

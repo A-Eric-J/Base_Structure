@@ -3,7 +3,7 @@ import 'package:base_structure_project/ui/widgets/blog.dart';
 import 'package:base_structure_project/ui/widgets/button/icon_button.dart';
 import 'package:base_structure_project/ui/widgets/textformfield/textformfield_widget.dart';
 
-class SearchBar extends StatelessWidget {
+class SearchBarWidget extends StatelessWidget {
   final TextEditingController textController;
   final String labelText;
   final EdgeInsetsGeometry? padding;
@@ -13,7 +13,7 @@ class SearchBar extends StatelessWidget {
   final bool enable;
   final VoidCallback? onTap;
 
-  const SearchBar(
+  const SearchBarWidget(
       {Key? key,
       this.padding,
       this.onChanged,
